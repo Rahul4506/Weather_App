@@ -82,46 +82,46 @@ async function checkWeather(city){
 
     if(data.weather[0].main =="Clouds"){
         weatherIcon.src="images/clouds.png";
-        note1.innerHTML="Badal kiye hue h, Baris ho sakti h";
+        note1.innerHTML="Rain Update: Badal kiye hue h, Baris ho sakti h";
     }
     else if(data.weather[0].main =="Clear"){
         weatherIcon.src="images/clear.png";
-        note1.innerHTML="Mausam saaf hai";
+        note1.innerHTML="Rain Update: Mausam saaf hai";
     }
     else if(data.weather[0].main =="Rain"){
         weatherIcon.src="images/rain.png";
-        note1.innerHTML="Baris ho rahi hai, chai pakode khaiye";
+        note1.innerHTML="Rain Update: Baris ho rahi hai, chai pakode khaiye";
     }
     else if(data.weather[0].main =="Drizzle"){
         weatherIcon.src="images/drizzle.png";
-        note1.innerHTML="Halki baris ho sakti hai";
+        note1.innerHTML="Rain Update: Halki baris ho sakti hai";
     }
     else if(data.weather[0].main =="Mist"){
         weatherIcon.src="images/mist.png";
-        note1.innerHTML="Halki baris ho sakti hai";
+        note1.innerHTML="Rain Update: Halki baris ho sakti hai";
     }
     
 
     if(data.main.temp>45){
-        note2.innerHTML="Severe heat wave hai, Bilkul v Bahar mat jaiye";
+        note2.innerHTML="Temp Update: Severe heat wave hai, Bilkul v Bahar mat jaiye";
     }
     else if(data.main.temp>40){
-        note2.innerHTML="Heat wave hai, Bahar mat jaiye ";
+        note2.innerHTML="Temp Update: Heat wave hai, Bahar mat jaiye ";
     }
     else if(data.main.temp>35){
-        note2.innerHTML="Garmi hai but kam se bahar ja sakte h";
+        note2.innerHTML="Temp Update: Garmi hai but kam se bahar ja sakte h";
     }
     else if(data.main.temp>30){
-        note2.innerHTML="Mausam thik hai ";
+        note2.innerHTML="Temp Update: Mausam thik hai ";
     }
     else if(data.main.temp>25){
-        note2.innerHTML="Mausam thik hai, Dosto ke mauj masti kijeye";
+        note2.innerHTML="Temp Update: Mausam thik hai, Dosto ke mauj masti kijeye";
     }
     else if(data.main.temp>20){
-        note2.innerHTML="Mausam suhana hai, Ground me khelne ja sakte h";
+        note2.innerHTML="Temp Update: Mausam suhana hai, Ground me khelne ja sakte h";
     }
     else if(data.main.temp>10){
-        note2.innerHTML="Bohtt thandi h bhai";
+        note2.innerHTML="Temp Update: Bohtt thandi h bhai";
     }
     else if(data.main.temp>0){
         note2.innerHTML="Thand se jam jaiyega, Bahar mat jaiye";
