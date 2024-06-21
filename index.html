@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="card">
+
+        <div class="search">
+            <input type="text" placeholder="Enter city name" spellcheck="false">
+            <button><img src="images/search.png"></button>
+        </div>
+        <div class="error">
+            <p>Invalid City Name</p>
+        </div>
+
+        <div class="weather">
+            <img src="images/rain.png" class="weather-icon">
+            <p class="baris" style="color: black">"Mausam saaf hai"</p>
+            <h1 class="temp">22°C</h1>
+            <h2 class="city">New York</h2>
+            <p class="garmi" style="color: black">"Bohtt garmi hai bhai"</p>
+        
+
+           <div class="details">
+               <div class="col">
+                  <img src="images/humidity.png">
+                   <div>
+                    <p class="humidity">50%</p>
+                    <p>Humidity</p>
+                   </div>
+                </div>
+
+              <div class="col">
+                  <img src="images/wind.png">
+                    <div>
+                    <p class="wind">15 km/h</p>
+                    <p>Wind Speed</p>
+                  </div>
+              </div>
+              </div>
+
+      </div>  
+
+      <div class="intro">
+        <p>Made with &#x2764;&#xFE0F; by Rahul</p>
+      </div>
+    </div>
+
+
+<script>
+
+    const apiKey="144a474ef1157f54f803c24dddeef507";
+    const apiUrl= "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+    const searchBox=document.querySelector(".search input");
+    const searchBtn=document.querySelector(".search button");
+    const weatherIcon=document.querySelector(".weather-icon");
+    const note1=document.querySelector(".baris");
+    const note2=document.querySelector(".garmi");
+
+
+async function checkWeather(city){
+    const response = await fetch(apiUrl+ city + `&appid=${apiKey}`);
+    var data = await response.json();
+
+    if(response.status==404){
+        document.querySelector(".error").style.display="block";
+        document.querySelector(".weather").style.display="none";
+    }
+
+    else{
+
+    document.querySelector(".temp").innerHTML= Math.round(data.main.temp)+ "°C";
+    document.querySelector(".city").innerHTML=data.name;
+    document.querySelector(".humidity").innerHTML=data.main.humidity+ "%";
+    document.querySelector(".wind").innerHTML=data.wind.speed + " km/h";data
+
+    if(data.weather[0].main =="Clouds"){
+        weatherIcon.src="images/clouds.png";
+        note1.innerHTML="Badal kiye hue h, Baris ho sakti h";
+    }
+    else if(data.weather[0].main =="Clear"){
+        weatherIcon.src="images/clear.png";
+        note1.innerHTML="Mausam saaf hai";
+    }
+    else if(data.weather[0].main =="Rain"){
+        weatherIcon.src="images/rain.png";
+        note1.innerHTML="Baris ho rahi hai, chai pakode khaiye";
+    }
+    else if(data.weather[0].main =="Drizzle"){
+        weatherIcon.src="images/drizzle.png";
+        note1.innerHTML="Halki baris ho sakti hai";
+    }
+    else if(data.weather[0].main =="Mist"){
+        weatherIcon.src="images/mist.png";
+        note1.innerHTML="Halki baris ho sakti hai";
+    }
+    
+
+    if(data.main.temp>45){
+        note2.innerHTML="Severe heat wave hai, Bilkul v Bahar mat jaiye";
+    }
+    else if(data.main.temp>40){
+        note2.innerHTML="Heat wave hai, Bahar mat jaiye ";
+    }
+    else if(data.main.temp>35){
+        note2.innerHTML="Garmi hai but kam se bahar ja sakte h";
+    }
+    else if(data.main.temp>30){
+        note2.innerHTML="Mausam thik hai ";
+    }
+    else if(data.main.temp>25){
+        note2.innerHTML="Mausam thik hai, Dosto ke mauj masti kijeye";
+    }
+    else if(data.main.temp>20){
+        note2.innerHTML="Mausam suhana hai, Ground me khelne ja sakte h";
+    }
+    else if(data.main.temp>10){
+        note2.innerHTML="Bohtt thandi h bhai";
+    }
+    else if(data.main.temp>0){
+        note2.innerHTML="Thand se jam jaiyega, Bahar mat jaiye";
+    }
+
+    document.querySelector(".weather").style.display="block";
+    document.querySelector(".error").style.display="none";
+
+}  
+}  
+
+searchBtn.addEventListener("click", ()=>{
+
+    checkWeather(searchBox.value);
+})
+
+</script>
+
+</body>
+</html>
